@@ -1,1 +1,1 @@
-Flutter app for CF
+Flutter app for CF - mobile app
