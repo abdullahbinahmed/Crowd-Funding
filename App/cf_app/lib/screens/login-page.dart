@@ -5,6 +5,7 @@ import '../widgets/background-image.dart';
 import '../widgets/password-input.dart';
 import '../widgets/rounded-button.dart';
 import '../widgets/text_input.dart';
+import "../widgets/sign-in-page.dart";
 
 class LoginPage extends StatelessWidget {
   @override
@@ -13,81 +14,8 @@ class LoginPage extends StatelessWidget {
       children: [
         BackgroundImage(),
         Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SingleChildScrollView(
-            child: SafeArea(
-              child: Column(
-                children: [
-                  Container(
-                    height: 150,
-                    child: Center(
-                      child: Text(
-                        'Crowdfunding App',
-                        style: kHeading,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 100,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
-                    child: Column(
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            TextInput(
-                              icon: FontAwesomeIcons.solidEnvelope,
-                              hint: 'UserId',
-                              inputType: TextInputType.text,
-                              inputAction: TextInputAction.next,
-                            ),
-                            PasswordInput(
-                              icon: FontAwesomeIcons.lock,
-                              hint: 'Password',
-                              inputAction: TextInputAction.done,
-                            ),
-                            Text(
-                              'Forgot Password?',
-                              style: kBodyText,
-                            ),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            SizedBox(
-                              height: 100,
-                            ),
-                            RoundedButton(
-                              buttonText: 'Login',
-                            ),
-                            SizedBox(
-                              height: 80,
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                  border: Border(
-                                bottom:
-                                    BorderSide(color: Colors.white, width: 1),
-                              )),
-                              child: Text(
-                                'CreateNewAccount',
-                                style: kBodyText,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 30,
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
+          backgroundColor: Colors.white,
+          body: signIn_Page(),
         ),
       ],
     );
