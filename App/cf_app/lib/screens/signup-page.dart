@@ -5,14 +5,14 @@ import '../widgets/background-image.dart';
 import "../widgets/ssoTextField.dart";
 import "../widgets/ssotogglebtns.dart";
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class signupPage extends StatefulWidget {
+  const signupPage({Key? key}) : super(key: key);
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<signupPage> createState() => _signupPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _signupPageState extends State<signupPage> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   @override
@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
                     alignment: Alignment.center,
                     padding: const EdgeInsets.all(30),
                     child: const Text(
-                      'Crowd Funding',
+                      'Crowd Funding SignUp Page',
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w500,
