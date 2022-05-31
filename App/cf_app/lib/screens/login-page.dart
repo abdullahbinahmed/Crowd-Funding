@@ -5,29 +5,33 @@ import '../widgets/background-image.dart';
 import '../widgets/password-input.dart';
 import '../widgets/rounded-button.dart';
 import '../widgets/text_input.dart';
+import 'campaigns/screen.dart';
 
 class LoginPage extends StatelessWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        BackgroundImage(),
+        const BackgroundImage(),
         Scaffold(
           backgroundColor: Colors.transparent,
           body: SingleChildScrollView(
             child: SafeArea(
               child: Column(
                 children: [
+                  // ignore: sized_box_for_whitespace
                   Container(
                     height: 150,
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'Crowdfunding App',
                         style: kHeading,
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 100,
                   ),
                   Container(
@@ -36,7 +40,7 @@ class LoginPage extends StatelessWidget {
                       children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
+                          children: const [
                             TextInput(
                               icon: FontAwesomeIcons.solidEnvelope,
                               hint: 'UserId',
@@ -56,27 +60,32 @@ class LoginPage extends StatelessWidget {
                         ),
                         Column(
                           children: [
-                            SizedBox(
+                            const SizedBox(
                               height: 100,
                             ),
-                            RoundedButton(
-                              buttonText: 'Login',
-                            ),
-                            SizedBox(
+                            TextButton(
+                                child: const Text('Login'),
+                                onPressed: () => Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              CampaignListing(),
+                                          fullscreenDialog: false),
+                                    )),
+                            const SizedBox(
                               height: 80,
                             ),
                             Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                   border: Border(
                                 bottom:
                                     BorderSide(color: Colors.white, width: 1),
                               )),
-                              child: Text(
+                              child: const Text(
                                 'CreateNewAccount',
                                 style: kBodyText,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 30,
                             ),
                           ],
