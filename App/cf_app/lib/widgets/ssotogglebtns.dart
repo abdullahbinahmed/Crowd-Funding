@@ -10,7 +10,7 @@ class ssoToggleButtons extends StatefulWidget {
 
 class _ssoToggleButtonsState extends State<ssoToggleButtons> {
   List<bool> _selections = List.generate(2, (_) => false);
-  if (pageName == 'LOGIN') {
+  if (widget.pageName == 'LOGIN') {
 
   }
   @override
