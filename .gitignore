@@ -1,1 +1,8 @@
-APIs\ssoServer\node_modules
+\APIs\ssoServer\node_modules
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/APIs/campaigns/node_modules/.bin
+/APIs/campaigns/node_modules

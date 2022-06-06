@@ -1,0 +1,19 @@
+{
+  "name": "campaigns",
+  "version": "1.0.0",
+  "description": "campaignAPIs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "campaign",
+    "api"
+  ],
+  "author": "sana",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "firebase-admin": "^10.2.0"
+  }
+}

@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 
 class ssoTextField extends StatelessWidget {
-  const ssoTextField({
-    Key? key,
-    @required this.name,
-    @required this.htext,
-    @required this.nameController,
-  }) : super(key: key);
-
-  final TextEditingController? nameController;
+  final void Function(String?)? onSaved;
   final String? htext;
   final String? name;
+  ssoTextField({
+    Key? key,
+    this.name,
+    this.htext,
+    this.onSaved,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
         textAlign: TextAlign.center,
         textAlignVertical: TextAlignVertical.center,
-        controller: nameController,
+        onSaved: onSaved,
         decoration: InputDecoration(
           hintText: htext,
           fillColor: Colors.white,
