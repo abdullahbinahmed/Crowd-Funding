@@ -29,6 +29,24 @@ class User {
       this.company,
       this.city,
       this.cnic});
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
+      email: json['emailId'] as String,
+      firstName: json['FirstName'] as String,
+      lastName: json['LastName'] as String,
+      phone: json['PhoneNumber'] as String,
+      address: json['Address'] as String,
+      city: json['City'] as String,
+      postCode: json['PostalCode'] as String,
+      country: json['Country'] as String,
+      zone: json['zone'] as String,
+      company: json['Company'] as String,
+      bankAccountNumber: json['BankAccountNumber'] as String,
+      bankName: json['BankName'] as String,
+      role: json['Role'] as String,
+      cnic: json['CNICNumber'] as String,
+    );
+  }
 
   Map<String, dynamic> toJson() => {
         "email": email,

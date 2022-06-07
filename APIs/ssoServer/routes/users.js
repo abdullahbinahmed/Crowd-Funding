@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 var passport = require('passport');
 var authenticate = require('../authenticate');
 var userDB = require('../db');
+const {auth} = require("firebase-admin");
 
 var router = express.Router();
 
@@ -12,29 +13,29 @@ router.use(bodyParser.json());
 router.get('/auth/google', 
   passport.authenticate('google', { scope : ['profile', 'email'] }),
   (req, res) => {
-    console.log("In /auth/google");
   });
  
 router.get('/auth/google/callback',
 authenticate.verifyGoogle,
   function(req, res) {
-    console.log("In /auth/google/callback");
-    var token = authenticate.getToken({_id: req.user.email[0]});
-    var statusMessage = 'Logged in!';
-    var status = true;
+    var token = null;
+    var statusMessage = 'You need to sign up!';
+    var status = false;
+    var user = null;
     console.log("Welcome", req.user);
-    if (!res.isExists) {
-      statusMessage = 'You need to sign up!';
-       status = false;
+    if (req.user.isExists) {
+      statusMessage = 'Logged in!';
+       status = true;
+       user = req.user.existingUser;
+       var token = authenticate.getToken({_id: req.user.email});
     }
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
-    res.json({success: status,token: token , status: statusMessage, email:req.user.email});
+    res.json({success: status, token: token, status: statusMessage, email:req.user.email, user: user});
 
   });
- router.post('/signup', async (req, res) => {
-     console.log(req.body );
-     await userDB.add({
+ router.post('/signup',async (req, res) => {
+     var user = await userDB.add({
          emailId: req.body.email,
          FirstName: req.body.firstName,
          LastName: req.body.lastName,
@@ -50,9 +51,22 @@ authenticate.verifyGoogle,
          Role: req.body.role,
          CNICNumber: req.body.cnic
      });
-     res.setHeader('Content-Type', 'text/plain'),
-         res.statusCode = 200;
-     res.end('Data written in db');
+     var token = authenticate.getToken({_id: req.user.emailId});
+     res.setHeader('Content-Type', 'text/plain');
+     res.statusCode = 200;
+     if(!user) {
+         res.statusCode =  400;
+         user = null;
+         success = false;
+         var statusMessage = 'You need to sign up!';
+         token = null;
+     }
+     res.json({success: status, token: token, status: statusMessage, email:req.email, user: user});
+ });
+ router.get('/validate', authenticate.verifyUser, (req, res) => {
+    res.statusCode = 200;
+    verified = true;
+    res.json({authenticated: verified});
  });
 
 module.exports = router;

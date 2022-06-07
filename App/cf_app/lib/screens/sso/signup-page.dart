@@ -4,7 +4,9 @@ import '../../widgets/background-image.dart';
 import "../../widgets/ssoTextField.dart";
 import "./model.dart";
 import 'package:http/http.dart' as http;
-import '../../global.dart' as config show signUpEndpoint;
+import '../../global.dart' as config
+    show signUpEndpoint, UserData, authenticator;
+import './signin-reply.dart';
 
 class signupPage extends StatefulWidget {
   var request;
@@ -178,16 +180,17 @@ class _signupPageState extends State<signupPage> {
                                       .post(Uri.parse(config.signUpEndpoint),
                                           headers: <String, String>{
                                             'Content-Type': 'application/json'
-                                            // 'Authorization': 'Bearer ' + request.token
                                           },
                                           body: jsonUser)
-                                      .then((http.Response response) {
-                                    print(
-                                        "Response status: ${response.statusCode}");
-                                    print(
-                                        "Response body: ${response.contentLength}");
-                                    print(response.headers);
-                                    print(response.request);
+                                      .then((http.Response jsonresponse) {
+                                    Map<String, dynamic> respMap = json
+                                        .decode(json.decode(jsonresponse.body));
+                                    UserCollection response =
+                                        UserCollection.fromJson(respMap);
+                                    config.UserData User =
+                                        config.UserData(response.user);
+                                    config.authenticator
+                                        .setToken(response.token);
                                   });
                                   if (response.statusCode == 200) {
                                     return;

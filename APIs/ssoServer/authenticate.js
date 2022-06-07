@@ -16,20 +16,16 @@ var opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = config.secretKey;
 
-module.exports.jwtPassport = passport.use(new JwtStrategy(opts,
-    (jwt_payload, done) => {
+module.exports.jwtPassport = passport.use(new JwtStrategy(opts, async function (jwt_payload, done) {
             console.log("JWT payload: ", jwt_payload);
-            User.findOne({_id: jwt_payload._id}, (err, user) => {
-               if (err) {
-                   return done(err, false);
-               }
-               else if (user) {
-                   return done(null, user);
-               }
-               else {
-                   return done(null, false);
-               }
-            });
+            var existingUser = await userDB.where('emailId', '==', jwt_payload._id.toString()).get();
+            var abc;
+            if(!existingUser.empty) {
+                return done(null, existingUser);
+            } else {
+                error = new Error('User is not authorized');
+                return done(error, false);
+            }
     }));
 module.exports.googlePassport = passport.use(new GoogleStrategy({
     clientID: options.clientId,
@@ -42,22 +38,20 @@ module.exports.googlePassport = passport.use(new GoogleStrategy({
             console.log('In google strategy function');
             console.log(JSON.stringify(profile));
             var existingUser = await userDB.where('emailId', '==', profile.email).get();
-            console.log('Read the records successfully');
             profile.isExists = false;
+            profile.user = null;
             console.log(existingUser.empty);
             if(!existingUser.empty) {
-                console.log('User exists');
                 profile.isExists = true;
+                profile.existingUser = existingUser;
                 return done(null, profile);
             }
             else {
-                console.log('Creating new user...');
-                console.log('Have written to db successfully');
                 return done(null, profile);
             }      
         }
         catch(error) {
-            console.log("error:" + error);
+            return(error);
         }
     }
 ));

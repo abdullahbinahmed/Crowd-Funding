@@ -3,6 +3,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'dart:convert';
 import '../screens/sso/signup-page.dart';
 import '../screens/sso/signin-reply.dart';
+import '../global.dart' as config show UserData, authenticator;
 
 class LogInWebView extends StatefulWidget {
   String url;
@@ -56,9 +57,12 @@ class _LogInWebViewState extends State<LogInWebView> {
   }
 
   void SignUpNaviagtion(response) {
-    if (!response.isExists) {
+    if (response.user == null) {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => signupPage(response)));
+    } else {
+      config.authenticator.setToken(response.token);
+      config.UserData user = config.UserData(response.user);
     }
   }
 }
