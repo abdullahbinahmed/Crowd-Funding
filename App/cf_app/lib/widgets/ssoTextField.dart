@@ -4,12 +4,8 @@ class ssoTextField extends StatelessWidget {
   final void Function(String?)? onSaved;
   final String? htext;
   final String? name;
-  ssoTextField({
-    Key? key,
-    this.name,
-    this.htext,
-    this.onSaved,
-  }) : super(key: key);
+  ssoTextField({Key? key, this.name, this.htext, this.onSaved})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +15,7 @@ class ssoTextField extends StatelessWidget {
         onSaved: onSaved,
         decoration: InputDecoration(
           hintText: htext,
+          labelText: name,
           fillColor: Colors.white,
           filled: true,
           focusedBorder: OutlineInputBorder(

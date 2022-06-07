@@ -1,9 +1,3 @@
-// var util = require('util')
-//     , OAuth2Strategy = require('passport-oauth').OAuth2Strategy
-//     , InternalOAuthError = require('passport-oauth').InternalOAuthError;
-
-// const e = require('express');
-// const { query } = require('express');
 const passport = require('passport');
 const options = require('./config/OAuthConfig');
 var ExtractJwt = require('passport-jwt').ExtractJwt;
@@ -12,9 +6,6 @@ var jwt = require('jsonwebtoken');
 var config = require('./config/config');
 var GoogleStrategy = require("passport-google-oauth2").Strategy;
 var userDB = require('./db');
-
-// passport.serializeUser(userDB.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
 
 module.exports.getToken = function(user) {
     return jwt.sign(user, config.secretKey,
@@ -61,11 +52,6 @@ module.exports.googlePassport = passport.use(new GoogleStrategy({
             }
             else {
                 console.log('Creating new user...');
-                // var newUser = await userDB.add({
-                //     googleId: profile.id,
-                //     emailId: profile.email,
-                //     name: profile.displayName
-                // });
                 console.log('Have written to db successfully');
                 return done(null, profile);
             }      

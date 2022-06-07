@@ -70,3 +70,5 @@ class Authenticator {
 bool mock = true;
 int currencyDecimalPlaces = 2;
 String currencySymbol = "PKR";
+const String logInRoute = 'http://192.168.34.11:3000/auth/google';
+const String signUpEndpoint = 'http://192.168.34.11:3000/signup';
