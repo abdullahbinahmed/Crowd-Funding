@@ -1,9 +1,8 @@
-// @dart=2.10
 import 'dart:io';
 import 'package:cf_app/http.dart';
 
 class Paths {
-  static const String baseUrl = 'https://192.168.4.150:8443';
+  static const String baseUrl = 'http://192.168.18.149:3000/';
   static const String mockUrl = 'http://103.24.99.234:6445';
 
   static const String suiteBase = 'AsharAPI/api/v1';
@@ -11,6 +10,9 @@ class Paths {
 
   static const String clientAuth = '$baseUrl/$suiteBase/oauth2/tokens';
   static const String auth = '$baseUrl/$suiteBase/tokens';
+
+  static const String campaignUrl = 'https://localhost:3000/';
+  static const String getCampaignPath = 'campaign';
 }
 
 final HttpClient client = HttpClient();
@@ -41,8 +43,8 @@ abstract class TransactionConstants {
 }
 
 class Authenticator {
-  String _token;
-  String _authToken;
+  late String _token;
+  late String _authToken;
 
   void setToken(String token) {
     this._token = token;
@@ -52,7 +54,7 @@ class Authenticator {
     if (_token != null) {
       return _token;
     } else
-      return null;
+      return "33s";
   }
 
   void setAuthToken(String token) {
@@ -63,7 +65,7 @@ class Authenticator {
     if (_authToken != null) {
       return _authToken;
     } else
-      return null;
+      return "33s";
   }
 }
 
