@@ -51,6 +51,7 @@
       <workItem from="1654531777396" duration="2999000" />
       <workItem from="1654579132328" duration="14361000" />
       <workItem from="1654615373261" duration="1721000" />
+      <workItem from="1654753479777" duration="13000" />
     </task>
     <servers />
   </component>
@@ -113,13 +114,11 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/authenticate.js</url>
           <line>21</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/authenticate.js</url>
           <line>24</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>

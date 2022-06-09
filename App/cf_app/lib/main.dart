@@ -1,7 +1,7 @@
 import 'package:cf_app/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import './screens/login-page.dart';
+import './screens/sso/login-page.dart';
 
 void main() {
   runApp(MyApp());
