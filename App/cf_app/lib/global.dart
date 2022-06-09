@@ -11,7 +11,7 @@ class Paths {
   static const String clientAuth = '$baseUrl/$suiteBase/oauth2/tokens';
   static const String auth = '$baseUrl/$suiteBase/tokens';
 
-  static const String campaignUrl = 'https://localhost:3000/';
+  static const String campaignUrl = 'https://192.168.18.149:3000/';
   static const String getCampaignPath = 'campaign';
 }
 

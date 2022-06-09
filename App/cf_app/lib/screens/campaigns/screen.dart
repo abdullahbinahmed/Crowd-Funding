@@ -3,7 +3,6 @@ import 'package:cf_app/screens/campaigns/model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'addCampaignsScreen.dart';
 
@@ -74,7 +73,7 @@ class _CampaignListingState extends State<CampaignListing> {
                           children: ListTile.divideTiles(
                                   context: context,
                                   color: Theme.of(context).primaryColorLight,
-                                  tiles: getMiniStatementWidget(
+                                  tiles: getCampaignListWidget(
                                       responseCampaigns.campaignList))
                               .toList()),
                     ))
@@ -83,7 +82,7 @@ class _CampaignListingState extends State<CampaignListing> {
     );
   }
 
-  List<CampaignItemWidget> getMiniStatementWidget(
+  List<CampaignItemWidget> getCampaignListWidget(
       List<CampaignEntry> transactions) {
     List<CampaignItemWidget> widgetList = <CampaignItemWidget>[];
     for (var item in transactions) {
