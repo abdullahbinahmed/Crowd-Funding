@@ -1,6 +1,8 @@
 import 'package:cf_app/api.dart';
 import 'package:cf_app/global.dart';
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:cf_app/http.dart';
+import 'package:flutter/material.dart';
 
 class Campaign {
   final String description;
@@ -25,6 +27,7 @@ class Campaign {
   Map<String, dynamic> toJson() => {
         "description": description,
         "endDate": endDate,
+        "startDate": startDate,
         "name": name,
         "amoutAcheived": amoutAcheived,
         "targetAmount": targetAmount,
@@ -50,34 +53,41 @@ class CampaignResponse {
 
 class CampaignEntry {
   final String id;
+  final double amountAchieved;
   final double targetAmount;
   final String name;
-  final double amountAchieved;
   final String enddate;
   final String createddate;
   final String startdate;
   final String description;
   final String imagePath;
   final String userId;
+  // final String uiamountAchieved;
+  // final String uitargetAmount;
 
-  CampaignEntry(
-      {required this.id,
-      required this.targetAmount,
-      required this.name,
-      required this.amountAchieved,
-      required this.enddate,
-      required this.createddate,
-      required this.startdate,
-      required this.description,
-      required this.imagePath,
-      required this.userId});
+  CampaignEntry({
+    required this.id,
+    required this.targetAmount,
+    required this.name,
+    required this.amountAchieved,
+    required this.enddate,
+    required this.createddate,
+    required this.startdate,
+    required this.description,
+    required this.imagePath,
+    required this.userId,
+    // required this.uiamountAchieved,
+    // required this.uitargetAmount
+  });
 
   CampaignEntry.fromJson(Map json)
       : id = json['id'],
-        // targetAmount = 'PKR ' + json['targetAmount'].toStringAsFixed(2),
-        // amountAchieved = 'PKR ' + json['amountAchieved'].toStringAsFixed(2),
+        // uitargetAmount = 'PKR ' + json['targetAmount'].toStringAsFixed(2),
+        // uiamountAchieved = 'PKR ' + json['amountAchieved'].toStringAsFixed(2),
         targetAmount = double.parse(json['targetAmount']),
-        amountAchieved = double.parse(json['amountAchieved']),
+        amountAchieved = json['amountAchieved'] == null
+            ? 0.0
+            : double.parse(json['amountAchieved']),
         name = json['name'],
         enddate = json['enddate'],
         createddate = json['createddate'],
@@ -135,15 +145,16 @@ class CampaignApi extends Api {
     print('Campaign Request: ${newCampaign.toJson()}');
 
     Map response = await dataSource.post(
-      Paths.campaignUrl,
+      Paths.baseUrl + Paths.getCampaignPath,
       body: newCampaign.toJson(),
       parseResponse: true,
+      isEncoded: false,
       token: token,
     );
 
     var result = CampaignEntry.fromJson(response);
-
-    String responseDescription = result.id != null
+    print(result.id);
+    String responseDescription = result.id.length > 0
         ? "Campaign have been successfully added."
         : "Unable to process request";
 
