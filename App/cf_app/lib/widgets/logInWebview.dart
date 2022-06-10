@@ -3,6 +3,7 @@ import 'package:webview_flutter/webview_flutter.dart';
 import 'dart:convert';
 import '../screens/sso/signup-page.dart';
 import '../screens/sso/signin-reply.dart';
+import '../screens/campaigns/screen.dart';
 import '../global.dart' as config show UserData, authenticator;
 
 class LogInWebView extends StatefulWidget {
@@ -58,9 +59,14 @@ class _LogInWebViewState extends State<LogInWebView> {
 
   void SignUpNaviagtion(response) {
     if (response.user == null) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => CampaignListing(),
+              fullscreenDialog: false));
+    } else {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => signupPage(response)));
-    } else {
       config.authenticator.setToken(response.token);
       config.UserData user = config.UserData(response.user);
     }
