@@ -62,28 +62,29 @@ class CampaignEntry {
   final String description;
   final String imagePath;
   final String userId;
-  // final String uiamountAchieved;
-  // final String uitargetAmount;
+  final String uiamountAchieved;
+  final String uitargetAmount;
 
-  CampaignEntry({
-    required this.id,
-    required this.targetAmount,
-    required this.name,
-    required this.amountAchieved,
-    required this.enddate,
-    required this.createddate,
-    required this.startdate,
-    required this.description,
-    required this.imagePath,
-    required this.userId,
-    // required this.uiamountAchieved,
-    // required this.uitargetAmount
-  });
+  CampaignEntry(
+      {required this.id,
+      required this.targetAmount,
+      required this.name,
+      required this.amountAchieved,
+      required this.enddate,
+      required this.createddate,
+      required this.startdate,
+      required this.description,
+      required this.imagePath,
+      required this.userId,
+      required this.uiamountAchieved,
+      required this.uitargetAmount});
 
   CampaignEntry.fromJson(Map json)
       : id = json['id'],
-        // uitargetAmount = 'PKR ' + json['targetAmount'].toStringAsFixed(2),
-        // uiamountAchieved = 'PKR ' + json['amountAchieved'].toStringAsFixed(2),
+        uitargetAmount =
+            'PKR ' + double.parse(json['targetAmount']).toStringAsFixed(2),
+        uiamountAchieved =
+            'PKR ' + double.parse(json['amountAchieved']).toStringAsFixed(2),
         targetAmount = double.parse(json['targetAmount']),
         amountAchieved = json['amountAchieved'] == null
             ? 0.0
