@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:cf_app/http.dart';
+import './screens/sso/model.dart';
 
 class Paths {
   static const String baseUrl = 'http://192.168.18.149:3000/';
@@ -69,6 +70,19 @@ class Authenticator {
   }
 }
 
+class UserData {
+  User user;
+  static final UserData _instance = UserData._internal();
+
+  factory UserData(User data) {
+    _instance.user = data;
+    return _instance;
+  }
+  UserData._internal();
+}
+
 bool mock = true;
 int currencyDecimalPlaces = 2;
 String currencySymbol = "PKR";
+const String logInRoute = 'http://192.168.1.119:3000/auth/google';
+const String signUpEndpoint = 'http://192.168.1.119:3000/signup';

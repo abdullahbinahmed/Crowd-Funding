@@ -5,3 +5,5 @@
 /.vs
 /APIs/campaigns/node_modules/.bin
 /APIs/campaigns/node_modules
+/APIs/ssoServer/node_modules
+/APIs/ssoServer/.idea
