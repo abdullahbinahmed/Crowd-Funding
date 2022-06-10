@@ -141,10 +141,10 @@ class _AddCampaignScreenState extends State<AddCampaignScreen> {
                               MaterialStateProperty.resolveWith<Color?>(
                             (Set<MaterialState> states) {
                               if (states.contains(MaterialState.pressed)) {
-                                return Color.fromARGB(255, 110, 10, 126)
+                                return const Color.fromARGB(255, 110, 10, 126)
                                     .withOpacity(0.5);
                               }
-                              return Color.fromARGB(255, 110, 10,
+                              return const Color.fromARGB(255, 110, 10,
                                   126); // Use the component's default.
                             },
                           )),

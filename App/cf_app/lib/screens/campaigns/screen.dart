@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import 'addCampaignsScreen.dart';
+import 'campaignDetails.dart';
 
 class CampaignListing extends StatefulWidget {
   @override
@@ -88,6 +89,7 @@ class _CampaignListingState extends State<CampaignListing> {
     for (var item in transactions) {
       widgetList.add(
         CampaignItemWidget(
+            campaignDetails: item,
             name: item.name,
             description: item.description,
             amountAcheived: item.amountAchieved,
@@ -100,6 +102,7 @@ class _CampaignListingState extends State<CampaignListing> {
 }
 
 class CampaignItemWidget extends StatelessWidget {
+  final CampaignEntry campaignDetails;
   final String name;
   final String description;
   final String imagePath;
@@ -107,7 +110,8 @@ class CampaignItemWidget extends StatelessWidget {
   final double amountAcheived;
 
   CampaignItemWidget(
-      {required this.name,
+      {required this.campaignDetails,
+      required this.name,
       required this.description,
       required this.imagePath,
       required this.totalAmount,
@@ -123,12 +127,23 @@ class CampaignItemWidget extends StatelessWidget {
           padding: const EdgeInsets.all(16),
           child: Column(
             children: [
-              Container(
-                width: double.infinity,
-                height: 200,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: NetworkImage(imagePath), fit: BoxFit.contain)),
+              GestureDetector(
+                child: Container(
+                  width: double.infinity,
+                  height: 200,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: NetworkImage(imagePath), fit: BoxFit.contain)),
+                ),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (context) => CampaignDetails(
+                              campaignEntry: campaignDetails,
+                            ),
+                        fullscreenDialog: false),
+                  );
+                },
               ),
               Divider(),
               Center(
