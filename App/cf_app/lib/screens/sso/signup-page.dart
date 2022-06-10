@@ -50,8 +50,8 @@ class _signupPageState extends State<signupPage> {
                           Container(
                             padding: const EdgeInsets.fromLTRB(45, 0, 45, 20),
                             child: ssoTextField(
+                                initialValue: request.firstname,
                                 name: 'First Name',
-                                htext: "John",
                                 onSaved: (String? value) {
                                   model.firstName = value;
                                 }),
@@ -59,8 +59,8 @@ class _signupPageState extends State<signupPage> {
                           Container(
                             padding: const EdgeInsets.fromLTRB(45, 0, 45, 20),
                             child: ssoTextField(
+                                initialValue: request.lastname,
                                 name: 'Last Name',
-                                htext: "Doe",
                                 onSaved: (String? value) {
                                   model.lastName = value;
                                 }),

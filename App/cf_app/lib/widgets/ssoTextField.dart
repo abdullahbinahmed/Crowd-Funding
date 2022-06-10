@@ -4,12 +4,15 @@ class ssoTextField extends StatelessWidget {
   final void Function(String?)? onSaved;
   final String? htext;
   final String? name;
-  ssoTextField({Key? key, this.name, this.htext, this.onSaved})
+  final String? initialValue;
+  ssoTextField(
+      {Key? key, this.name, this.htext, this.onSaved, this.initialValue})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+        initialValue: initialValue,
         textAlign: TextAlign.center,
         textAlignVertical: TextAlignVertical.center,
         onSaved: onSaved,
