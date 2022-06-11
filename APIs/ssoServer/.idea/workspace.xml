@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="121fc88d-aa4b-4617-8e9c-6c2463c6d4e2" name="Changes" comment="" />
+    <list default="true" id="121fc88d-aa4b-4617-8e9c-6c2463c6d4e2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../App/cf_app/lib/screens/sso/login-page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../App/cf_app/lib/screens/sso/login-page.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../App/cf_app/lib/widgets/googleSignInButton.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../../App/cf_app/lib/widgets/googleSignInButton.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../App/cf_app/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../App/cf_app/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../App/cf_app/windows/flutter/generated_plugin_registrant.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../../App/cf_app/windows/flutter/generated_plugin_registrant.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../App/cf_app/windows/flutter/generated_plugins.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../../App/cf_app/windows/flutter/generated_plugins.cmake" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -9,6 +17,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/routes/users.js" root0="FORCE_HIGHLIGHTING" />
@@ -52,6 +68,7 @@
       <workItem from="1654579132328" duration="14361000" />
       <workItem from="1654615373261" duration="1721000" />
       <workItem from="1654753479777" duration="13000" />
+      <workItem from="1654931076657" duration="2272000" />
     </task>
     <servers />
   </component>

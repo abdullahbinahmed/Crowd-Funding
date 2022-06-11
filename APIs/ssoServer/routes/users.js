@@ -67,5 +67,9 @@ authenticate.verifyGoogle,
     verified = true;
     res.json({authenticated: verified});
  });
-
+router.get('/users/:userId', authenticate.verifyUser, async (req, res) => {
+    res.statusCode = 200;
+    var existingUser = await userDB.where('emailId', '==', req.params.userId).get();
+    res.json({user: existingUser});
+});
 module.exports = router;
