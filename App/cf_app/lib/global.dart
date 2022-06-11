@@ -44,25 +44,25 @@ abstract class TransactionConstants {
 }
 
 class Authenticator {
-  late String _token;
-  late String _authToken;
+  late String? _token;
+  late String? _authToken;
 
   void setToken(String token) {
     this._token = token;
   }
 
-  String getToken() {
+  String? getToken() {
     if (_token != null) {
       return _token;
     } else
       return "33s";
   }
 
-  void setAuthToken(String token) {
+  void setAuthToken(String? token) {
     this._authToken = token;
   }
 
-  String getAuthToken() {
+  String? getAuthToken() {
     if (_authToken != null) {
       return _authToken;
     } else
@@ -71,10 +71,10 @@ class Authenticator {
 }
 
 class UserData {
-  User user;
+  User? user;
   static final UserData _instance = UserData._internal();
 
-  factory UserData(User data) {
+  factory UserData(User? data) {
     _instance.user = data;
     return _instance;
   }

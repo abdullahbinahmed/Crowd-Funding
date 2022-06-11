@@ -190,7 +190,7 @@ class _signupPageState extends State<signupPage> {
                                     config.UserData User =
                                         config.UserData(response.user);
                                     config.authenticator
-                                        .setToken(response.token);
+                                        .setAuthToken(response.token);
                                   });
                                   if (response.statusCode == 200) {
                                     return;
