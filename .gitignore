@@ -3,6 +3,7 @@
 ################################################################################
 
 /.vs
+/.idea
 /APIs/campaigns/node_modules/.bin
 /APIs/campaigns/node_modules
 /APIs/PaymentGateway/bin
@@ -10,3 +11,5 @@
 /APIs/PaymentGateway/obj
 /APIs/PaymentGateway/obj
 /APIs/PaymentGateway/.vs
+/APIs/ssoServer/node_modules
+/APIs/ssoServer/.idea
