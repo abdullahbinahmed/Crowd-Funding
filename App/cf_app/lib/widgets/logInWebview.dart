@@ -58,7 +58,7 @@ class _LogInWebViewState extends State<LogInWebView> {
   }
 
   void SignUpNaviagtion(response) {
-    if (response.user == null) {
+    if (response.user != null) {
       Navigator.push(
           context,
           MaterialPageRoute(

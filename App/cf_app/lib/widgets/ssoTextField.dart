@@ -5,8 +5,14 @@ class ssoTextField extends StatelessWidget {
   final String? htext;
   final String? name;
   final String? initialValue;
+  final TextInputType? type;
   ssoTextField(
-      {Key? key, this.name, this.htext, this.onSaved, this.initialValue})
+      {Key? key,
+      this.name,
+      this.htext,
+      this.onSaved,
+      this.initialValue,
+      this.type})
       : super(key: key);
 
   @override
@@ -16,6 +22,7 @@ class ssoTextField extends StatelessWidget {
         textAlign: TextAlign.center,
         textAlignVertical: TextAlignVertical.center,
         onSaved: onSaved,
+        keyboardType: type,
         decoration: InputDecoration(
           hintText: htext,
           labelText: name,
@@ -30,7 +37,7 @@ class ssoTextField extends StatelessWidget {
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.all(Radius.circular(30)),
             borderSide: BorderSide(
-              color: Colors.blue,
+              color: Theme.of(context).hintColor,
             ),
           ),
         ));

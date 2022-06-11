@@ -24,6 +24,6 @@ class _googleSignInButton extends State<googleSignInButton> {
   }
 
   Widget build(BuildContext context) {
-    return SignInButton(Buttons.Google, onPressed: inform);
+    return SignInButton(Buttons.GoogleDark, onPressed: inform);
   }
 }

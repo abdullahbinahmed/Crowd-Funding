@@ -10,35 +10,36 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController nameController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Stack(children: [
-      BackgroundImage(),
-      Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Center(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.all(30),
-                    child: const Text(
-                      'Crowd Funding',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 30),
-                    )),
-                Container(
-                  padding: const EdgeInsets.all(30),
-                  child: googleSignInButton(),
+    return SafeArea(
+        child: Scaffold(
+      appBar: AppBar(
+        title: const Text('Crowd Funding'),
+        backgroundColor: Theme.of(context).primaryColor,
+      ),
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(30),
+                child: Text(
+                  'Login Page',
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(color: Theme.of(context).primaryColor),
                 ),
-              ]),
-        ),
-      )
-    ]);
+              ),
+              Container(
+                padding: const EdgeInsets.all(30),
+                child: googleSignInButton(),
+              ),
+            ]),
+      ),
+    ));
   }
 }
