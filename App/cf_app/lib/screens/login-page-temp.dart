@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import '../palatte.dart';
+import '../../palatte.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import '../widgets/background-image.dart';
-import '../widgets/password-input.dart';
-import '../widgets/rounded-button.dart';
-import '../widgets/text_input.dart';
+import '../../widgets/background-image.dart';
+import '../../widgets/password-input.dart';
+import '../../widgets/rounded-button.dart';
+import '../../widgets/text_input.dart';
 import 'campaigns/screen.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class LoginPageTemp extends StatelessWidget {
+  const LoginPageTemp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
