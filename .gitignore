@@ -5,3 +5,8 @@
 /.vs
 /APIs/campaigns/node_modules/.bin
 /APIs/campaigns/node_modules
+/APIs/PaymentGateway/bin
+/APIs/PaymentGateway/.cr
+/APIs/PaymentGateway/obj
+/APIs/PaymentGateway/obj
+/APIs/PaymentGateway/.vs
