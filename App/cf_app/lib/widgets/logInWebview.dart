@@ -59,6 +59,8 @@ class _LogInWebViewState extends State<LogInWebView> {
 
   void SignUpNaviagtion(response) {
     if (response.user != null) {
+      config.authenticator.setToken(response.token);
+      config.UserData user = config.UserData(response.user);
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -67,8 +69,6 @@ class _LogInWebViewState extends State<LogInWebView> {
     } else {
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => signupPage(response)));
-      config.authenticator.setToken(response.token);
-      config.UserData user = config.UserData(response.user);
     }
   }
 }

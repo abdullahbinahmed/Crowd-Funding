@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import '../../widgets/ssoDropDownField.dart';
 import "../../widgets/ssoTextField.dart";
 import "./model.dart";
+import '../../screens/campaigns/screen.dart';
 import 'package:http/http.dart' as http;
 import '../../global.dart' as config
     show signUpEndpoint, UserData, authenticator;
@@ -20,11 +20,19 @@ class _signupPageState extends State<signupPage> {
   var request;
   _signupPageState(this.request);
   User model = User();
-  String _myRoleDropDownResult = '';
-  String _myBankNameDropDownResult = '';
+  String? _myRoleDropDownResult;
+  String? _myBankNameDropDownResult;
+  @override
+  void initState() {
+    super.initState();
+    _myBankNameDropDownResult = 'Bank of Punjab';
+    _myRoleDropDownResult = 'Donator';
+  }
+
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    model.bankCode = "BOPBank";
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
@@ -142,25 +150,35 @@ class _signupPageState extends State<signupPage> {
                           }),
                     ),
                     Container(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-                      child: dropDownField(
-                        titleText: 'Bank Name',
-                        hintText: 'Alfalah',
-                        value: (dynamic selected) {
-                          _myBankNameDropDownResult = selected;
-                        },
-                        onSaved: (dynamic value) {
-                          model.bankName = _myBankNameDropDownResult;
-                        },
-                        dataSource1: 'Bank of Punjab',
-                        dataSource2: 'NIFT Test Bank',
-                        dataSource3: 'Standard Chatered Bank',
-                        dataSource4: 'Alfalah',
-                        dataSource5: 'HBL',
-                        dataSource6: 'NBP',
-                        dataSource7: 'Al Habib',
-                      ),
-                    ),
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                        child: DropdownButton(
+                          value: _myBankNameDropDownResult,
+                          isExpanded: true,
+                          borderRadius: BorderRadius.circular(5.0),
+                          onChanged: (String? selected) {
+                            setState(() {
+                              _myBankNameDropDownResult = selected;
+                              model.bankName = _myBankNameDropDownResult;
+                            });
+                          },
+                          items: const [
+                            DropdownMenuItem(
+                                value: 'Bank of Punjab',
+                                child: Text("Bank of Punjab")),
+                            DropdownMenuItem(
+                                value: 'NIFT Test Bank',
+                                child: Text("NIFT Test Bank")),
+                            DropdownMenuItem(
+                                value: 'Standard Chatered Bank',
+                                child: Text("Standard Chatered Bank")),
+                            DropdownMenuItem(
+                                value: 'Alfalah', child: Text("Alfalah")),
+                            DropdownMenuItem(value: 'HBL', child: Text("HBL")),
+                            DropdownMenuItem(value: 'NBP', child: Text("NBP")),
+                            DropdownMenuItem(
+                                value: 'Al Habib', child: Text("Al Habib"))
+                          ],
+                        )),
                     Container(
                       padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                       child: ssoTextField(
@@ -172,21 +190,27 @@ class _signupPageState extends State<signupPage> {
                           }),
                     ),
                     Container(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-                      child: dropDownField(
-                        titleText: 'Role',
-                        hintText: 'Creator/Donator',
-                        value: (dynamic selected) {
-                          _myRoleDropDownResult = selected;
-                        },
-                        onSaved: (dynamic value) {
-                          model.role = _myRoleDropDownResult;
-                        },
-                        dataSource1: 'Creator',
-                        dataSource2: 'Donator',
-                        dataSource3: 'Creator/Donator',
-                      ),
-                    ),
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                        child: DropdownButton(
+                          value: _myRoleDropDownResult,
+                          isExpanded: true,
+                          borderRadius: BorderRadius.circular(5.0),
+                          onChanged: (String? selected) {
+                            setState(() {
+                              _myRoleDropDownResult = selected;
+                              model.role = _myRoleDropDownResult;
+                            });
+                          },
+                          items: const [
+                            DropdownMenuItem(
+                                value: 'Creator', child: Text('Creator')),
+                            DropdownMenuItem(
+                                value: 'Donator', child: Text('Donator')),
+                            DropdownMenuItem(
+                                value: 'Creator/Donator',
+                                child: Text('Creator/Donator'))
+                          ],
+                        )),
                     Container(
                       padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                       child: ssoTextField(
@@ -212,6 +236,9 @@ class _signupPageState extends State<signupPage> {
                           )),
                           child: const Text('Submit'),
                           onPressed: () async {
+                            if (model.bankName == 'NIFT Test Bank') {
+                              model.bankCode = 'TBANK';
+                            }
                             model.email = request.email;
                             _formKey.currentState?.save();
                             String jsonUser = jsonEncode(model);
@@ -231,7 +258,14 @@ class _signupPageState extends State<signupPage> {
                               config.authenticator.setAuthToken(response.token);
                             });
                             if (response.statusCode == 200) {
-                              return;
+                              config.authenticator.setToken(response.token);
+                              config.UserData user =
+                                  config.UserData(response.user);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CampaignListing(),
+                                      fullscreenDialog: false));
                             } else {
                               throw Exception('Failed to sign up User');
                             }

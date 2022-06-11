@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import './model.dart';
 
 class UserCollection {
@@ -24,7 +26,7 @@ class UserCollection {
         email: json['email'] as String,
         token: json['token'] as String,
         status: json['status'] as String,
-        user: json['user'] as User,
+        user: User.fromJson(json['user']),
         firstname: json['firstname'] as String,
         lastname: json['lastname'] as String);
   }

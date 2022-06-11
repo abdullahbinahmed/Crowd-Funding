@@ -17,7 +17,6 @@ opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = config.secretKey;
 
 module.exports.jwtPassport = passport.use(new JwtStrategy(opts, async function (jwt_payload, done) {
-            console.log("JWT payload: ", jwt_payload);
             var existingUser = await userDB.where('emailId', '==', jwt_payload._id.toString()).get();
             var abc;
             if(!existingUser.empty) {
@@ -38,10 +37,9 @@ module.exports.googlePassport = passport.use(new GoogleStrategy({
             var existingUser = await userDB.where('emailId', '==', profile.email).get();
             profile.isExists = false;
             profile.user = null;
-            console.log(existingUser.empty);
             if(!existingUser.empty) {
                 profile.isExists = true;
-                profile.existingUser = existingUser;
+                profile.existingUser = existingUser.docs[0].data();
                 return done(null, profile);
             }
             else {

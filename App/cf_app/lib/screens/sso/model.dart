@@ -13,6 +13,7 @@ class User {
   String? bankName;
   String? role;
   String? cnic;
+  String? bankCode;
 
   User(
       {this.email,
@@ -28,7 +29,8 @@ class User {
       this.role,
       this.company,
       this.city,
-      this.cnic});
+      this.cnic,
+      this.bankCode});
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       email: json['emailId'] as String,
@@ -45,6 +47,7 @@ class User {
       bankName: json['BankName'] as String,
       role: json['Role'] as String,
       cnic: json['CNICNumber'] as String,
+      bankCode: json['bankCode'] as String,
     );
   }
 
@@ -62,6 +65,7 @@ class User {
         "role": role,
         "country": country,
         "cnic": cnic,
-        "zone": zone
+        "zone": zone,
+        "bankCode": bankCode
       };
 }

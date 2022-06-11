@@ -30,7 +30,7 @@ authenticate.verifyGoogle,
     }
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
-    res.json({success: status, token: token, status: statusMessage, email:req.user.email, user: user, email: req.user.email, firstname: req.user.given_name, lastname: req.user.family_name});
+    res.json({success: status, token: token, status: statusMessage,user: user, email: req.user.email, firstname: req.user.given_name, lastname: req.user.family_name});
 
   });
  router.post('/signup',async (req, res) => {
@@ -50,7 +50,9 @@ authenticate.verifyGoogle,
          Role: req.body.role,
          CNICNumber: req.body.cnic
      });
-     var token = authenticate.getToken({_id: req.user.emailId});
+     var token = authenticate.getToken({_id: req.body.emailId});
+     var statusMessage = 'You need to sign up!';
+     var status = true;
      res.setHeader('Content-Type', 'text/plain');
      res.statusCode = 200;
      if(!user) {
@@ -60,7 +62,7 @@ authenticate.verifyGoogle,
          var statusMessage = 'You need to sign up!';
          token = null;
      }
-     res.json({success: status, token: token, status: statusMessage, email:req.email, user: user});
+     res.json({status: success, token: token, status: statusMessage, email:req.body.emailId, user: user.docs[0].data()});
  });
  router.get('/validate', authenticate.verifyUser, (req, res) => {
     res.statusCode = 200;
@@ -70,6 +72,6 @@ authenticate.verifyGoogle,
 router.get('/users/:userId', authenticate.verifyUser, async (req, res) => {
     res.statusCode = 200;
     var existingUser = await userDB.where('emailId', '==', req.params.userId).get();
-    res.json({user: existingUser});
+    res.json({user: existingUser.docs[0].data()});
 });
 module.exports = router;
