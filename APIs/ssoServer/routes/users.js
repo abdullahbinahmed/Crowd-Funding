@@ -22,7 +22,6 @@ authenticate.verifyGoogle,
     var statusMessage = 'You need to sign up!';
     var status = false;
     var user = null;
-    console.log("Welcome", req.user);
     if (req.user.isExists) {
       statusMessage = 'Logged in!';
        status = true;
@@ -31,7 +30,7 @@ authenticate.verifyGoogle,
     }
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
-    res.json({success: status, token: token, status: statusMessage, email:req.user.email, user: user});
+    res.json({success: status, token: token, status: statusMessage, email:req.user.email, user: user, email: req.user.email, firstname: req.user.given_name, lastname: req.user.family_name});
 
   });
  router.post('/signup',async (req, res) => {
