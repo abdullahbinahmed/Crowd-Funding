@@ -103,7 +103,7 @@ class CampaignDetails extends StatelessWidget {
                     center: Text(((campaignEntry.amountAchieved /
                                     campaignEntry.targetAmount) *
                                 100)
-                            .toString() +
+                            .toStringAsFixed(1) +
                         "%"),
                     linearStrokeCap: LinearStrokeCap.roundAll,
                     progressColor: Colors.greenAccent[400],

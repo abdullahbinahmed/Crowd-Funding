@@ -20,10 +20,10 @@ async function addData(req) {
             "targetAmount": "20000",
             "amountAchieved": "0",
             "userId": req.userId,
-            "imagePath":"https://st.depositphotos.com/1092019/2964/i/450/depositphotos_29644465-stock-photo-keyboard-with-crowd-funding-button.jpg",
+            "imagePath": "https://st.depositphotos.com/1092019/2964/i/450/depositphotos_29644465-stock-photo-keyboard-with-crowd-funding-button.jpg",
             "createddate": new Date()
         });
-        req.id= `c-${randomId}`;
+        req.id = `c-${randomId}`;
         return true;
     }
     catch (error) {
@@ -33,7 +33,7 @@ async function addData(req) {
 }
 
 
-async function getCampaigns(){
+async function getCampaigns() {
 
     var campaigns = [];
     const db = getFirestore();
@@ -43,18 +43,43 @@ async function getCampaigns(){
 
     if (snapshot.empty) {
         return {};
-      }  
-      
-      snapshot.forEach(doc => {
-        campaigns.push(doc.data());
-        campaigns[campaigns.length-1].enddate=doc.data().enddate.toDate();
-        campaigns[campaigns.length-1].startdate=doc.data().startdate.toDate();
-        campaigns[campaigns.length-1].createddate=doc.data().createddate.toDate();
+    }
 
-      });
+    snapshot.forEach(doc => {
+        campaigns.push(doc.data());
+        campaigns[campaigns.length - 1].enddate = doc.data().enddate.toDate();
+        campaigns[campaigns.length - 1].startdate = doc.data().startdate.toDate();
+        campaigns[campaigns.length - 1].createddate = doc.data().createddate.toDate();
+
+    });
 
     console.log(campaigns);
-    return {"count": campaigns.length, "campaigns": campaigns };
+    return { "count": campaigns.length, "campaigns": campaigns };
+}
+
+
+async function update(camapaignId, amount) {
+    try {
+        const db = getFirestore();
+
+        const campaignRef = db.collection('campaign').doc(camapaignId);
+        const doc = await campaignRef.get();
+        if (!doc.exists) {
+            console.log('No such document!');
+        } else {
+            console.log('Document data:', doc.data().amountAchieved);
+            var current_amount = doc.data().amountAchieved;
+            var updated_amount = Number(current_amount) + Number(amount);
+            console.log(updated_amount);
+            const res = await campaignRef.update({ amountAchieved: updated_amount.toString() });
+            console.log(res);
+            return true;
+        }
+    }
+    catch (error) {
+        console.error(error);
+        return false;
+    }
 }
 
 
@@ -66,4 +91,4 @@ async function getCampaigns(){
 // // }
 
 
-module.exports={addData,getCampaigns};
+module.exports = { addData, getCampaigns,update };
