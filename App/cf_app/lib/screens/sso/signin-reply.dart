@@ -6,9 +6,17 @@ class UserCollection {
   final String? email;
   final String? token;
   final User? user;
+  final String? firstname;
+  final String? lastname;
 
   UserCollection(
-      {this.success, this.status, this.email, this.token, this.user});
+      {this.success,
+      this.status,
+      this.email,
+      this.token,
+      this.user,
+      this.firstname,
+      this.lastname});
 
   factory UserCollection.fromJson(Map<String, dynamic> json) {
     return UserCollection(
@@ -16,7 +24,9 @@ class UserCollection {
         email: json['email'] as String,
         token: json['token'] as String,
         status: json['status'] as String,
-        user: json['user'] as User);
+        user: json['user'] as User,
+        firstname: json['firstname'] as String,
+        lastname: json['lastname'] as String);
   }
 
   Map<String, dynamic> toJson() {
@@ -26,6 +36,8 @@ class UserCollection {
     data['email'] = this.email;
     data['token'] = this.token;
     data['user'] = this.user;
+    data['lastname'] = this.lastname;
+    data['firstname'] = this.firstname;
     return data;
   }
 }

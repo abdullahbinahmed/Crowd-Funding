@@ -23,7 +23,7 @@ async function addData(req) {
             "imagePath":"https://st.depositphotos.com/1092019/2964/i/450/depositphotos_29644465-stock-photo-keyboard-with-crowd-funding-button.jpg",
             "createddate": new Date()
         });
-
+        req.id= `c-${randomId}`;
         return true;
     }
     catch (error) {
@@ -38,7 +38,7 @@ async function getCampaigns(){
     var campaigns = [];
     const db = getFirestore();
     const docRef = db.collection('campaign');
-    var snapshot = await docRef.orderBy('createddate', 'desc').limit(3).get();
+    var snapshot = await docRef.orderBy('createddate', 'desc').limit(10).get();
 
 
     if (snapshot.empty) {

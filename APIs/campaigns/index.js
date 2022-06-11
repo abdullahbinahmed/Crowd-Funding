@@ -32,6 +32,7 @@ app.post('/campaign', async (req, res) => {
     var body = req.body;
 
     var isSuccess = await addData(body);
+    body.amountAchieved="0";
 
     res.statusCode = isSuccess ? 201 : 500;
     res.json(isSuccess ? body : { "error": "Failed to process request." });

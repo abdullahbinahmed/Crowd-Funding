@@ -35,8 +35,6 @@ module.exports.googlePassport = passport.use(new GoogleStrategy({
 },
     async function (accessToken, refreshToken, profile, done) {
         try{
-            console.log('In google strategy function');
-            console.log(JSON.stringify(profile));
             var existingUser = await userDB.where('emailId', '==', profile.email).get();
             profile.isExists = false;
             profile.user = null;
