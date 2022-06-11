@@ -87,6 +87,7 @@ class OTPAlert extends State<OTPAlertWidget> {
               );
               Navigator.of(context).pop();
               Navigator.of(context).pop();
+              Navigator.of(context).pop();
             },
             child: const Text('OK'))
       ],
