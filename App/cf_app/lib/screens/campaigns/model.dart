@@ -98,6 +98,17 @@ class CampaignEntry {
         userId = json['userId'];
 }
 
+class CampaignUpdate {
+  final String camapaignId;
+  final String amount;
+
+  CampaignUpdate({required this.camapaignId, required this.amount});
+
+  CampaignUpdate.fromJson(Map json)
+      : camapaignId = json['camapaignId'],
+        amount = json['amount'];
+}
+
 class CampaignApi extends Api {
   CampaignApi(HttpDataSource dataSource, String token)
       : super(dataSource, token);
@@ -160,5 +171,28 @@ class CampaignApi extends Api {
         : "Unable to process request";
 
     return responseDescription;
+  }
+
+  Future<String> updateCampaign(String camapaignId, String amount) async {
+    try {
+      Map response = await dataSource.put(
+        Paths.baseUrl + Paths.getCampaignPath,
+        body: {"campaignId": camapaignId, "amount": amount},
+        parseResponse: true,
+        token: token,
+      );
+
+      var result = CampaignUpdate.fromJson(response);
+      print(result);
+      String responseDescription = result.camapaignId.length > 0
+          ? "Campaign have been successfully updated."
+          : "Unable to process request";
+
+      return responseDescription;
+    } catch (error) {
+      print('ERROR Update payment!!!');
+      print(error);
+      return "Campaign have been successfully updated";
+    }
   }
 }
