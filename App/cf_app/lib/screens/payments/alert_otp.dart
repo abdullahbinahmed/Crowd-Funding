@@ -102,13 +102,16 @@ class OTPAlert extends State<OTPAlertWidget> {
             widget.message,
             textAlign: TextAlign.center,
           ),
+          SizedBox(
+            height: 16.0,
+          ),
           DecoratedFormTextField(
             icon: Icons.password,
             focusNode: FocusNode(),
             hintText: "OTP",
             labelText: "OTP",
             controller: TextEditingController(),
-            keyboardType: TextInputType.visiblePassword,
+            keyboardType: TextInputType.number,
             hasError: false,
             validator: (value) => validateAmount(value, "invalid OTP"),
             maxLength: 6,
