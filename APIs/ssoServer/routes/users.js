@@ -48,11 +48,13 @@ authenticate.verifyGoogle,
          BankAccountNumber: req.body.bankAccountNumber,
          BankName: req.body.bankName,
          Role: req.body.role,
-         CNICNumber: req.body.cnic
+         CNICNumber: req.body.cnic,
+         BankCode: req.body.bankCode
      });
      var token = authenticate.getToken({_id: req.body.emailId});
-     var statusMessage = 'You need to sign up!';
+     var statusMessage = 'You have successfully signed up!';
      var status = true;
+     success = true;
      res.setHeader('Content-Type', 'text/plain');
      res.statusCode = 200;
      if(!user) {
@@ -62,7 +64,7 @@ authenticate.verifyGoogle,
          var statusMessage = 'You need to sign up!';
          token = null;
      }
-     res.json({status: success, token: token, status: statusMessage, email:req.body.emailId, user: user.docs[0].data()});
+     res.json({status: success, token: token, status: statusMessage, email:req.body.emailId, user: req.body});
  });
  router.get('/validate', authenticate.verifyUser, (req, res) => {
     res.statusCode = 200;

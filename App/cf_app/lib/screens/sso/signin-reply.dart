@@ -26,7 +26,7 @@ class UserCollection {
         email: json['email'] as String,
         token: json['token'] as String,
         status: json['status'] as String,
-        user: User.fromJson(json['user']),
+        user: json['user'] == null ? null : User.fromJson(json['user']),
         firstname: json['firstname'] as String,
         lastname: json['lastname'] as String);
   }

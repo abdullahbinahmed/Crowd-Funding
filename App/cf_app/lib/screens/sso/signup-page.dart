@@ -32,7 +32,6 @@ class _signupPageState extends State<signupPage> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    model.bankCode = "BOPBank";
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(
@@ -236,7 +235,8 @@ class _signupPageState extends State<signupPage> {
                           )),
                           child: const Text('Submit'),
                           onPressed: () async {
-                            if (model.bankName == 'NIFT Test Bank') {
+                            model.bankCode = "BOPBank";
+                            if (model.bankName == "NIFT Test Bank") {
                               model.bankCode = 'TBANK';
                             }
                             model.email = request.email;
