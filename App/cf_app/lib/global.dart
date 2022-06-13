@@ -88,5 +88,5 @@ class UserData {
 bool mock = true;
 int currencyDecimalPlaces = 2;
 String currencySymbol = "PKR";
-const String logInRoute = 'http://192.168.1.3:3000/auth/google';
-const String signUpEndpoint = 'http://192.168.1.3:3000/signup';
+const String logInRoute = 'http://192.168.18.149:3000/auth/google';
+const String signUpEndpoint = 'http://192.168.18.149:3000/signup';
