@@ -13,6 +13,8 @@ class Campaign {
   final String startDate;
   final String imagePath;
   final String userId;
+  final String fundingType;
+  final String creatorName;
 
   Campaign(
       {required this.description,
@@ -22,7 +24,9 @@ class Campaign {
       required this.targetAmount,
       required this.startDate,
       required this.imagePath,
-      required this.userId});
+      required this.userId,
+      required this.fundingType,
+      required this.creatorName});
 
   Map<String, dynamic> toJson() => {
         "description": description,
@@ -32,7 +36,9 @@ class Campaign {
         "amoutAcheived": amoutAcheived,
         "targetAmount": targetAmount,
         "imagePath": imagePath,
-        "userId": userId
+        "userId": userId,
+        "fundingtype": fundingType,
+        "creatorname": creatorName
       };
 }
 
@@ -64,6 +70,10 @@ class CampaignEntry {
   final String userId;
   final String uiamountAchieved;
   final String uitargetAmount;
+  final String creatorname;
+  final String fundingType;
+  final String backers;
+  final String daysleft;
 
   CampaignEntry(
       {required this.id,
@@ -77,7 +87,11 @@ class CampaignEntry {
       required this.imagePath,
       required this.userId,
       required this.uiamountAchieved,
-      required this.uitargetAmount});
+      required this.uitargetAmount,
+      required this.creatorname,
+      required this.backers,
+      required this.daysleft,
+      required this.fundingType});
 
   CampaignEntry.fromJson(Map json)
       : id = json['id'],
@@ -95,7 +109,11 @@ class CampaignEntry {
         startdate = json['startdate'],
         description = json['description'],
         imagePath = json['imagePath'],
-        userId = json['userId'];
+        creatorname = json['creatorname'],
+        backers = json['backers'],
+        daysleft = json['daysleft'],
+        userId = json['userId'],
+        fundingType = json['fundingtype'];
 }
 
 class CampaignUpdate {
@@ -143,7 +161,8 @@ class CampaignApi extends Api {
       String imagePath,
       String name,
       String startDate,
-      String targetAmount) async {
+      String targetAmount,
+      String selectedType) async {
     var newCampaign = Campaign(
         name: name,
         startDate: startDate,
@@ -152,7 +171,9 @@ class CampaignApi extends Api {
         description: description,
         endDate: endDate,
         imagePath: imagePath,
-        amoutAcheived: "0");
+        amoutAcheived: "0",
+        fundingType: selectedType,
+        creatorName: "sanasz91 | Karachi, Pakistan");
 
     print('Campaign Request: ${newCampaign.toJson()}');
 

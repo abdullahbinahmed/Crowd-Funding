@@ -154,6 +154,17 @@ class _PaymentScreenState extends State<PaymentScreen> {
   }
 
   Future<String> doPayment() async {
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (context) => const AlertDialog(
+        content: ListTile(
+          leading: CircularProgressIndicator(),
+          title: Text('Processing payment verification ... please wait'),
+        ),
+      ),
+    );
+
     PaymentApi api = PaymentApi(dataSource, "token");
     InitiatePaymentResponse response = await api.initiateTxn(
         _amountController.text,

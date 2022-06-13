@@ -154,6 +154,60 @@ class CampaignItemWidget extends StatelessWidget {
                     ),
               )),
               Divider(),
+              Center(
+                  child: Text(
+                description,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: Colors.black,
+                    fontWeight: FontWeight.normal,
+                    fontSize: 16.0),
+              )),
+              Divider(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    campaignDetails.backers + " ",
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleLarge
+                        ?.copyWith(fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "Backers",
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(color: Colors.purple),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 8.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    campaignDetails.uiamountAchieved,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold, color: Colors.green),
+                  ),
+                  Text(
+                    " of ",
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold, color: Colors.orange),
+                  ),
+                  Text(
+                    campaignDetails.uitargetAmount,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.bold, color: Colors.red),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 8.0,
+              ),
               SafeArea(
                 child: Padding(
                   padding: const EdgeInsets.only(left: 8.0),
@@ -172,6 +226,30 @@ class CampaignItemWidget extends StatelessWidget {
                     ),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 8.0,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    campaignDetails.daysleft + " ",
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleLarge
+                        ?.copyWith(fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    int.parse(campaignDetails.daysleft) > 1
+                        ? "Days Left"
+                        : "Day Left!",
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.copyWith(color: Colors.purple),
+                  )
+                ],
               ),
             ],
           )),

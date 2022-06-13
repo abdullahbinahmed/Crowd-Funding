@@ -84,11 +84,32 @@ class CampaignDetails extends StatelessWidget {
           const SizedBox(
             height: 8.0,
           ),
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  campaignEntry.backers + " ",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  "Backers",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(color: Colors.purple),
+                )
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 8.0,
+          ),
           ListTile(
-            // leading: const Icon(
-            //   Icons.attach_money_sharp,
-            //   color: Colors.green,
-            // ),
             title: SafeArea(
               child: Padding(
                 padding: const EdgeInsets.only(left: 8.0),
@@ -112,6 +133,33 @@ class CampaignDetails extends StatelessWidget {
               ),
             ),
             subtitle: const Center(child: Text('Camapaign progress')),
+          ),
+          SizedBox(
+            height: 8.0,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  campaignEntry.daysleft + " ",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(fontWeight: FontWeight.bold),
+                ),
+                Text(
+                  int.parse(campaignEntry.daysleft) > 1
+                      ? "Days Left"
+                      : "Day Left!",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(color: Colors.purple),
+                )
+              ],
+            ),
           ),
         ],
       ),

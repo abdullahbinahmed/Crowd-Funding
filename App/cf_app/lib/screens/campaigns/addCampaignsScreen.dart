@@ -22,6 +22,8 @@ class _AddCampaignScreenState extends State<AddCampaignScreen> {
   final TextEditingController startDateController = TextEditingController();
   final FocusNode endDateFocusNode = FocusNode();
   final TextEditingController endDateController = TextEditingController();
+  String? selectedValue = 'Fixed';
+  bool isSlectedDD = false;
 
   @override
   Widget build(BuildContext context) {
@@ -57,6 +59,49 @@ class _AddCampaignScreenState extends State<AddCampaignScreen> {
                       .titleMedium
                       ?.copyWith(color: Theme.of(context).primaryColor),
                 ),
+                const SizedBox(
+                  height: 16.0,
+                ),
+                Container(
+                  margin: const EdgeInsets.all(10.0),
+                  child: ClipRect(
+                    /** Banner Widget **/
+                    child: Container(
+                      color: Colors.purple[50],
+                      height: 65,
+                      width: MediaQuery.of(context).size.width - 15,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Flexible(
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.warning,
+                                  color: Colors.red,
+                                ),
+                                const Text(
+                                    'Our platform charges a three percent (3%) platform fee '),
+                              ],
+                            ),
+                          ),
+                          Text('on all funds raised for your campaign'),
+                          Padding(
+                              padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
+                              child: GestureDetector(
+                                child: const Text("Click here for more info.",
+                                    style: TextStyle(
+                                        decoration: TextDecoration.underline,
+                                        color: Colors.blue)),
+                                onTap: () async {},
+                              )),
+                        ],
+                      ), //Padding
+                    ), //Banner
+                  ), //ClipRect
+                ), //container
+
                 const SizedBox(
                   height: 32.0,
                 ),
@@ -132,6 +177,55 @@ class _AddCampaignScreenState extends State<AddCampaignScreen> {
                 const SizedBox(
                   height: 16.0,
                 ),
+                ListTile(
+                  subtitle: Text('Select Funding Type',
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleMedium
+                          ?.copyWith(color: Colors.orange, fontSize: 16.0)),
+                  title: DropdownButton<String>(
+                      isExpanded: true,
+                      value: selectedValue,
+                      icon: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Icon(
+                          Icons.arrow_circle_down,
+                          color: isSlectedDD
+                              ? Colors.white
+                              : Theme.of(context).highlightColor,
+                        ),
+                      ),
+                      iconSize: 20,
+                      elevation: 16,
+                      underline: Container(),
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          isSlectedDD = true;
+                          selectedValue = newValue;
+                        });
+                      },
+                      items: <String>["Flexible", "Fixed"]
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                            value: value,
+                            child: Container(
+                              color: isSlectedDD
+                                  ? Theme.of(context).primaryColor
+                                  : Colors.white,
+                              child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(value.toString(),
+                                      style: TextStyle(
+                                        color: isSlectedDD
+                                            ? Colors.white
+                                            : Colors.black,
+                                      ))),
+                            ));
+                      }).toList()),
+                ),
+                const SizedBox(
+                  height: 16.0,
+                ),
                 Center(
                   child: Row(
                     children: [
@@ -183,7 +277,8 @@ class _AddCampaignScreenState extends State<AddCampaignScreen> {
           "",
           nameController.text,
           startDateController.text,
-          amountController.text);
+          amountController.text,
+          selectedValue ?? "Flexible");
 
       Navigator.of(context).pop();
       await showDialog(
