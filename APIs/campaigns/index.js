@@ -3,7 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { initializeApp, applicationDefault, cert } = require('firebase-admin/app');
 const { addData, getCampaigns, update } = require('./campaign');
-var port = 3000;
+var port = 4000;
 
 var serviceAccount = require("./campaigns-55bd5-firebase-adminsdk-adyt6-925903eabb.json");
 
