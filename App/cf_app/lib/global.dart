@@ -12,14 +12,14 @@ class Paths {
   static const String clientAuth = '$baseUrl/$suiteBase/oauth2/tokens';
   static const String auth = '$baseUrl/$suiteBase/tokens';
 
-  static const String campaignUrl = 'https://192.168.32.232:4000/';
+  static const String campaignUrl = 'https://20.69.193.245:3000/';
   static const String getCampaignPath = 'campaign';
 
-  static const String paymentBaseUrl = 'http://192.168.32.232:5000/payment';
+  static const String paymentBaseUrl = 'http://20.22.136.41:5000/payment';
   static const String paymentPath_InitTxn = '/SendOTP';
   static const String paymentPath_DoTxn = '/DoTransaction';
 
-  static const String ledgerUrl = 'http://192.168.32.232:5000/payment';
+  static const String ledgerUrl = 'http://52.177.242.101:3030/payment';
 
   static const String termsAndConditions =
       'http://my-cf-app.com/termsandconditions';
@@ -93,5 +93,5 @@ class UserData {
 bool mock = true;
 int currencyDecimalPlaces = 2;
 String currencySymbol = "PKR";
-const String logInRoute = 'http://192.168.32.232:3000/auth/google';
-const String signUpEndpoint = 'http://192.168.32.232:3000/signup';
+const String logInRoute = 'http://20.22.17.201:3000/auth/google';
+const String signUpEndpoint = 'http://20.22.17.201:3000/signup';

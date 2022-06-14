@@ -253,12 +253,7 @@ class _signupPageState extends State<signupPage> {
                                   json.decode(json.decode(jsonresponse.body));
                               UserCollection response =
                                   UserCollection.fromJson(respMap);
-                              config.UserData User =
-                                  config.UserData(response.user);
                               config.authenticator.setAuthToken(response.token);
-                            });
-                            if (response.statusCode == 200) {
-                              config.authenticator.setToken(response.token);
                               config.UserData user =
                                   config.UserData(response.user);
                               Navigator.push(
@@ -266,9 +261,7 @@ class _signupPageState extends State<signupPage> {
                                   MaterialPageRoute(
                                       builder: (context) => CampaignListing(),
                                       fullscreenDialog: false));
-                            } else {
-                              throw Exception('Failed to sign up User');
-                            }
+                            });
                           }),
                     ),
                   ])))

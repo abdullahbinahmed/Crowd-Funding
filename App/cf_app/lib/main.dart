@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter LoginPage',
       theme: crowdFundingAppTheme,
-      home: const LoginPageTemp(),
+      home: const LoginPage(),
     );
   }
 }
