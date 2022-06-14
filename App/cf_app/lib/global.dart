@@ -3,7 +3,7 @@ import 'package:cf_app/http.dart';
 import './screens/sso/model.dart';
 
 class Paths {
-  static const String baseUrl = 'http://192.168.18.149:3000/';
+  static const String baseUrl = 'http://192.168.32.232:4000/';
   static const String mockUrl = 'http://103.24.99.234:6445';
 
   static const String suiteBase = 'AsharAPI/api/v1';
@@ -12,10 +12,10 @@ class Paths {
   static const String clientAuth = '$baseUrl/$suiteBase/oauth2/tokens';
   static const String auth = '$baseUrl/$suiteBase/tokens';
 
-  static const String campaignUrl = 'https://192.168.18.149:3000/';
+  static const String campaignUrl = 'https://192.168.32.232:4000/';
   static const String getCampaignPath = 'campaign';
 
-  static const String paymentBaseUrl = 'http://192.168.18.149:5000/payment';
+  static const String paymentBaseUrl = 'http://192.168.32.232:5000/payment';
   static const String paymentPath_InitTxn = '/SendOTP';
   static const String paymentPath_DoTxn = '/DoTransaction';
   static const String termsAndConditions =
@@ -90,5 +90,5 @@ class UserData {
 bool mock = true;
 int currencyDecimalPlaces = 2;
 String currencySymbol = "PKR";
-const String logInRoute = 'http://192.168.18.149:3000/auth/google';
-const String signUpEndpoint = 'http://192.168.18.149:3000/signup';
+const String logInRoute = 'http://192.168.32.232:3000/auth/google';
+const String signUpEndpoint = 'http://192.168.32.232:3000/signup';
