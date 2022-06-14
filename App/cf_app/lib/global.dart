@@ -18,6 +18,9 @@ class Paths {
   static const String paymentBaseUrl = 'http://192.168.32.232:5000/payment';
   static const String paymentPath_InitTxn = '/SendOTP';
   static const String paymentPath_DoTxn = '/DoTransaction';
+
+  static const String ledgerUrl = 'http://192.168.32.232:5000/payment';
+
   static const String termsAndConditions =
       'http://my-cf-app.com/termsandconditions';
 }
