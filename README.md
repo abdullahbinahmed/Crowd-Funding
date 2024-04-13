@@ -1,7 +1,5 @@
 # Crowdfunding Application
 
-# Crowdfunding Application
-
 Welcome to the Crowdfunding Application repository! This repository contains the source code for a functional Crowdfunding application with various features including Google Sign On, Payment Gateway integration, Ledgering Service, and Campaign Management.
 
 ## Features
